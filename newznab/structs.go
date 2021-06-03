@@ -27,12 +27,12 @@ type NZB struct {
 	Genre    string   `json:"genre,omitempty"`
 
 	// TV Specific stuff
-	TVDBID   string `json:"genre,omitempty"`
-	TVRageID string `json:"genre,omitempty"`
+	TVDBID   string `json:"tvdbid,omitempty"`
+	TVRageID string `json:"tvrageid,omitempty"`
 	Season   string `json:"season,omitempty"`
 	Episode  string `json:"episode,omitempty"`
 	TVTitle  string `json:"tvtitle,omitempty"`
-	Rating   int    `json:"tvtitle,omitempty"`
+	Rating   int    `json:"rating,omitempty"`
 
 	// Movie Specific stuff
 	IMDBID    string  `json:"imdb,omitempty"`
