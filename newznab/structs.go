@@ -70,37 +70,39 @@ func (c Comment) JSONString() string {
 
 // SearchResponse is a RSS version of the response.
 type SearchResponse struct {
-	Version   string `xml:"version,attr"`
-	ErrorCode int    `xml:"code,attr"`
-	ErrorDesc string `xml:"description,attr"`
-	Channel   struct {
-		Title string `xml:"title"`
-		Link  struct {
-			Href string `xml:"href,attr"`
-			Rel  string `xml:"rel,attr"`
-			Type string `xml:"type,attr"`
-		} `xml:"http://www.w3.org/2005/Atom link"`
-		Description string `xml:"description"`
-		Language    string `xml:"language,omitempty"`
-		Webmaster   string `xml:"webmaster,omitempty"`
-		Category    string `xml:"category,omitempty"`
-		Image       struct {
-			URL         string `xml:"url"`
-			Title       string `xml:"title"`
-			Link        string `xml:"link"`
-			Description string `xml:"description,omitempty"`
-			Width       int    `xml:"width,omitempty"`
-			Height      int    `xml:"height,omitempty"`
-		} `xml:"image"`
+	Version   string  `xml:"version,attr"`
+	ErrorCode int     `xml:"code,attr"`
+	ErrorDesc string  `xml:"description,attr"`
+	Channel   Channel `xml:"channel"`
+}
 
-		Response struct {
-			Offset int `xml:"offset,attr"`
-			Total  int `xml:"total,attr"`
-		} `xml:"http://www.newznab.com/DTD/2010/feeds/attributes/ response"`
+type Channel struct {
+	Title string `xml:"title"`
+	Link  struct {
+		Href string `xml:"href,attr"`
+		Rel  string `xml:"rel,attr"`
+		Type string `xml:"type,attr"`
+	} `xml:"http://www.w3.org/2005/Atom link"`
+	Description string `xml:"description"`
+	Language    string `xml:"language,omitempty"`
+	Webmaster   string `xml:"webmaster,omitempty"`
+	Category    string `xml:"category,omitempty"`
+	Image       struct {
+		URL         string `xml:"url"`
+		Title       string `xml:"title"`
+		Link        string `xml:"link"`
+		Description string `xml:"description,omitempty"`
+		Width       int    `xml:"width,omitempty"`
+		Height      int    `xml:"height,omitempty"`
+	} `xml:"image"`
 
-		// All NZBs that match the search query, up to the response limit.
-		NZBs []RawNZB `xml:"item"`
-	} `xml:"channel"`
+	Response struct {
+		Offset int `xml:"offset,attr"`
+		Total  int `xml:"total,attr"`
+	} `xml:"http://www.newznab.com/DTD/2010/feeds/attributes/ response"`
+
+	// All NZBs that match the search query, up to the response limit.
+	NZBs []RawNZB `xml:"item"`
 }
 
 // RawNZB represents a single NZB item in search results.
